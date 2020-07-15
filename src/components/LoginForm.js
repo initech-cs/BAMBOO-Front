@@ -48,10 +48,9 @@ export default function SignupForm(props) {
           <div>
             <MDBNavbar dark expand="md" fixed="top">
               <MDBContainer>
-                <MDBNavbarBrand>
-                <Link to="/">
-                <MDBBtn gradient="peach">DAEQUAN</MDBBtn></Link>
-                </MDBNavbarBrand>
+              <MDBNavbarBrand>
+              <MDBBtn outline color="success">BambooSoft</MDBBtn>
+              </MDBNavbarBrand>
                 <MDBNavbarToggler
                   onClick={toggleCollapse("navbarCollapse")}
                 />
@@ -63,16 +62,6 @@ export default function SignupForm(props) {
                 
                   <MDBNavbarNav right>
                     <MDBNavItem>
-                      <MDBFormInline waves>
-                        <div className="md-form my-0">
-                          <input
-                            className="form-control mr-sm-2"
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                          />
-                        </div>
-                      </MDBFormInline>
                     </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCollapse>
@@ -89,7 +78,7 @@ export default function SignupForm(props) {
                 <MDBAnimation
                   type="fadeInLeft"
                   delay=".3s"
-                  className="white-text text-center text-md-left col-md-6 mt-xl-5 mb-5"
+                  className="green-text text-center text-md-left col-md-6 mt-xl-5 mb-5"
                 >
                   <h1 className="h1-responsive font-weight-bold">
                     Login
@@ -101,7 +90,7 @@ export default function SignupForm(props) {
                     veniam sapiente, fugiat! Commodi sequi non animi ea dolor
                     molestiae, quisquam iste, maiores. Nulla.
                   </h6>
-                  <MDBBtn outline color="white">
+                  <MDBBtn outline color="green">
                     Learn More
                   </MDBBtn>
                 </MDBAnimation>
@@ -116,36 +105,27 @@ export default function SignupForm(props) {
                         <hr className="hr-light" />
                       
                         <MDBInput
-                          className="white-text"
-                          iconClass="white-text"
+                          className="green-text"
+                          iconClass="green-text"
                           label="Your email"
                           icon="envelope"
                           onChange={(e) => (props.setEmail(e))}
                         />
                         <MDBInput
-                          className="white-text"
-                          iconClass="white-text"
+                          className="green-text"
+                          iconClass="green-text"
                           label="Your password"
                           icon="lock"
                           type="password"
                           onChange={(e) => (props.setPassword(e))}
                         />
                         <div className="text-center mt-4 black-text">
-                          <MDBBtn color="indigo" onClick={() => props.loginWithEmail(props.email,props.password)}>Login</MDBBtn>
+                          <MDBBtn color="success" onClick={() => props.loginWithEmail(props.email,props.password)}>Login</MDBBtn>
                           <hr className="hr-light" />
                           <div className="text-center d-flex justify-content-center white-label">
-                          <MDBBtn outline color="primary" onClick={props.loginWithFacebook}><MDBIcon
-                                fab
-                                icon="facebook"
-                                className="blue-text"
-                              /></MDBBtn>
+                          <MDBBtn color="blue" size="sm"><MDBIcon fab icon="facebook-f" /> Facebook</MDBBtn>
                               
-                            <MDBBtn outline color="dange">
-                              <MDBIcon
-                                fab
-                                icon="google"
-                                className="red-text"
-                              /></MDBBtn>
+                          <MDBBtn color="red" size="sm"><MDBIcon fab icon="google" /> Google</MDBBtn>
                           </div>
                         </div>
                       </MDBCardBody>

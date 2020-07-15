@@ -10,6 +10,7 @@ import AlgoPage from "./pages/AlgoPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SignupPage from "./pages/SignupPage";
+import CreatePage from "./pages/Create"
 function App(props) {
   let user = { 
     isAuthenticated: true
@@ -29,9 +30,11 @@ function App(props) {
       {/* <Route path="/" exact component={MainPage} /> */}
       <Route path="/login" exact component={LoginPage} />
       {/* this handle event that switch user to Login pages */}
-      <Route path="/algo" exact component={AlgoPage} />
+      <Route path="/question" exact component={AlgoPage} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/signup" exact component={SignupPage} />
+      {/* this handle event that switch user to well, .. Jobs page */}
+      <Route path="/create" exact component={CreatePage} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <ProtectedRoute
         path="/Algo/:id"

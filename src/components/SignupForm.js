@@ -24,7 +24,7 @@ import {
 } from "mdbreact";
 import "./SignupForm.css";
 
-export default function SignupForm() {
+export default function SignupForm(props) {
   const [collapseID,setCollapseID] = useState("")
   const toggleCollapse = collapseID => () =>
   setCollapseID(prevState => ({
@@ -37,6 +37,9 @@ export default function SignupForm() {
       onClick={toggleCollapse("navbarCollapse")}
     />
   );
+  const signup = ()=>{
+    
+  }
   return (
     <div>
        <div id="classicformpage">
@@ -118,12 +121,14 @@ export default function SignupForm() {
                           iconClass="white-text"
                           label="Your name"
                           icon="user"
+                          onChange={(e)=>props.setUser(e)}
                         />
                         <MDBInput
                           className="white-text"
                           iconClass="white-text"
                           label="Your email"
                           icon="envelope"
+                          onChange={(e)=>props.setEmail(e)}
                         />
                         <MDBInput
                           className="white-text"
@@ -131,23 +136,23 @@ export default function SignupForm() {
                           label="Your password"
                           icon="lock"
                           type="password"
+                          onChange={(e)=>props.setPassword(e)}
+                        />
+                        <MDBInput
+                          className="white-text"
+                          iconClass="white-text"
+                          label="Re-enter your password"
+                          icon="lock"
+                          type="password"
+                          onChange={(e)=>props.setConfirm(e)}
                         />
                         <div className="text-center mt-4 black-text">
-                          <MDBBtn color="indigo">Sign Up</MDBBtn>
+                          <MDBBtn color="indigo" onClick={()=>{props.addUser(props.username,props.email,props.password)}}>Sign Up</MDBBtn>
                           <hr className="hr-light" />
                           <div className="text-center d-flex justify-content-center white-label">
-                          <MDBBtn outline color="primary" ><MDBIcon
-                                fab
-                                icon="facebook"
-                                className="blue-text"
-                              /></MDBBtn>
+                          <MDBBtn color="blue" size="sm"><MDBIcon fab icon="facebook-f" /> Facebook</MDBBtn>
                               
-                            <MDBBtn outline color="dange">
-                              <MDBIcon
-                                fab
-                                icon="google"
-                                className="red-text"
-                              /></MDBBtn>
+                          <MDBBtn color="red" size="sm"><MDBIcon fab icon="google" /> Google</MDBBtn>
                           </div>
                         </div>
                       </MDBCardBody>

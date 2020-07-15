@@ -31,7 +31,7 @@ class Navbar2 extends React.Component {
     this.setState((prevState) => ({
       collapseID: prevState.collapseID !== collapseID ? collapseID : "",
     }));
-
+ 
   render() {
     const overlay = (
       <div
@@ -45,10 +45,10 @@ class Navbar2 extends React.Component {
       <div id="videobackground">
         {/* <Router> */}
         <div>
-          <MDBNavbar dark expand="md" fixed="top">
+          <MDBNavbar dark expand="md fixed-top" >
             <MDBContainer>
               <MDBNavbarBrand>
-                <MDBBtn gradient="peach">DAEQUAN</MDBBtn>
+              <MDBBtn outline color="success">BambooSoft</MDBBtn>
               </MDBNavbarBrand>
               <MDBNavbarToggler
                 onClick={this.toggleCollapse("navbarCollapse")}
@@ -60,21 +60,27 @@ class Navbar2 extends React.Component {
               >
                 <MDBNavbarNav left>
                   <MDBNavItem>
-                    <MDBNavLink to="/">Home</MDBNavLink>
+                    <MDBNavLink to="/"> <MDBBtn color="dark-green" size="sm">Home</MDBBtn></MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/algo"> <MDBBtn color="dark-green" size="sm">Questions</MDBBtn></MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/dev"> <MDBBtn color="dark-green" size="sm">Developers</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
                     <MDBNavLink to="!#">
-                      <MDBIcon fab icon="facebook-f" />
+                    <MDBBtn color="blue" size="sm"><MDBIcon fab icon="facebook-f" /> Facebook</MDBBtn>
                     </MDBNavLink>
                   </MDBNavItem>
 
                   <MDBNavItem>
-                    <MDBNavLink to="/signup">Sign Up</MDBNavLink>
+                    <MDBNavLink to="/signup"><MDBBtn color="dark-green" size="sm">Signup</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   {this.props.user?null:<MDBNavItem>
-                    <MDBNavLink to="/login">Login</MDBNavLink>
+                    <MDBNavLink to="/login"><MDBBtn color="dark-green" size="sm">Login</MDBBtn></MDBNavLink>
                   </MDBNavItem>}
                   
                   <MDBDropdown>
@@ -87,7 +93,7 @@ class Navbar2 extends React.Component {
                       <MDBDropdownItem href="/profile">
                         Your Profile
                       </MDBDropdownItem>
-                      <MDBDropdownItem >Logout</MDBDropdownItem>
+                      <MDBDropdownItem onClick={()=>{this.props.logout()}}>Logout</MDBDropdownItem>
                     </MDBDropdownMenu>:null}
                   </MDBDropdown>
                 </MDBNavbarNav>
@@ -101,21 +107,22 @@ class Navbar2 extends React.Component {
         <MDBView>
           <video
             className="video-intro"
-            poster="https://mdbootstrap.com/img/Photos/Others/background.jpg"
+            poster=""
             playsInline
             autoPlay
-            muted=""
+            muted={true}
             loop
           >
             <source
-              src="https://mdbootstrap.com/img/video/animation.mp4"
+              src="bamboo2.mp4"
               type="video/mp4"
+              repeat={true}
             />
           </video>
           <MDBMask className="d-flex justify-content-center align-items-center gradient">
             <MDBContainer className="px-md-3 px-sm-0">
               <MDBRow>
-                <MDBCol md="12" className="mb-4 white-text text-center">
+                <MDBCol md="12" className="mb-4 text-success text-center">
                   <h3 className="display-3 font-weight-bold mb-0 pt-md-5">
                     Bamboo Trees{" "}
                   </h3>
@@ -125,7 +132,7 @@ class Navbar2 extends React.Component {
                     deleniti consequuntur nihil.
                   </h4>
                   <MDBBtn outline rounded color="white">
-                    <MDBIcon icon="home" /> Visit us
+                    <MDBIcon icon="home" /> Check out our Question
                   </MDBBtn>
                 </MDBCol>
               </MDBRow>
