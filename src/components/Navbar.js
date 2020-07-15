@@ -45,7 +45,7 @@ class Navbar2 extends React.Component {
       <div id="videobackground">
         {/* <Router> */}
         <div>
-          <MDBNavbar dark expand="md fixed-top" >
+          <MDBNavbar dark expand="md fixed-top d-inline-flex" >
             <MDBContainer>
               <MDBNavbarBrand>
               <MDBBtn outline color="success">BambooSoft</MDBBtn>
@@ -60,13 +60,13 @@ class Navbar2 extends React.Component {
               >
                 <MDBNavbarNav left>
                   <MDBNavItem>
-                    <MDBNavLink to="/"> <MDBBtn color="dark-green" size="sm">Home</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/"> <MDBBtn color="transparent" size="sm">Home</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/algo"> <MDBBtn color="dark-green" size="sm">Questions</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/question"> <MDBBtn color="transparent" size="sm">Questions</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/dev"> <MDBBtn color="dark-green" size="sm">Developers</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/developer"> <MDBBtn color="transparent" size="sm">Developers</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
@@ -85,7 +85,7 @@ class Navbar2 extends React.Component {
                   
                   <MDBDropdown>
                     {this.props.user?<MDBDropdownToggle nav caret>
-                      <MDBIcon icon="user" />
+                      <MDBBtn color="transparent" size="sm"><MDBIcon icon="user" /></MDBBtn>
                     </MDBDropdownToggle>:null}
                     
                     {this.props.user ? 

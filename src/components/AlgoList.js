@@ -7,6 +7,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBIcon } from "mdbreact";
 import PaginationPage from "./Pagination.js";
 import { useHistory, useLocation } from "react-router-dom";
 import PaginationLink from "./PaginationLink.js";
+import Card2 from "./Card.js"
 ThemedStyleSheet.registerInterface(aphroditeInterface);
 ThemedStyleSheet.registerTheme(DefaultTheme);
 export default function AlgoList() {
@@ -103,8 +104,9 @@ export default function AlgoList() {
           <p>
             Min Price {tempMinPrice} <br /> Max Price {tempMaxPrice}
           </p>
-        </div>
 
+        </div>
+        <Card2 />
         <PaginationPage />
       </MDBContainer>
     </div>

@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SignupPage from "./pages/SignupPage";
 import CreatePage from "./pages/Create"
+import DeveloperPage from "./pages/DeveloperPage"
 function App(props) {
   let user = { 
     isAuthenticated: true
@@ -31,6 +32,8 @@ function App(props) {
       <Route path="/login" exact component={LoginPage} />
       {/* this handle event that switch user to Login pages */}
       <Route path="/question" exact component={AlgoPage} />
+      {/* this handle event that switch user to well, .. Jobs page */}
+      <Route path="/dev" exact component={DeveloperPage} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/signup" exact component={SignupPage} />
       {/* this handle event that switch user to well, .. Jobs page */}
