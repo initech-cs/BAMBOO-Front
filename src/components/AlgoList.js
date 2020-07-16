@@ -5,37 +5,47 @@ import aphroditeInterface from "react-with-styles-interface-aphrodite";
 import DefaultTheme from "rheostat/lib/themes/DefaultTheme";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBIcon } from "mdbreact";
 import PaginationPage from "./Pagination.js";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import PaginationLink from "./PaginationLink.js";
-import Card2 from "./Card.js"
+import Card2 from "./Card.js";
 ThemedStyleSheet.registerInterface(aphroditeInterface);
 ThemedStyleSheet.registerTheme(DefaultTheme);
-export default function AlgoList() {
-  const [items, setItems] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
+export default function AlgoList(props) {
+  // const [items, setItems] = useState([]);
+  const [minDifficulty, setMinDifficulty] = useState(0);
+  const [maxDifficulty, setMaxDifficulty] = useState(10);
   const [isDragging, setIsDragging] = useState(false);
-  const [exp, setExp] = useState([]);
-  const [tempMinPrice, setTempMinPrice] = useState(1);
-  const [tempMaxPrice, setTempMaxPrice] = useState(1000);
+  const [questionList, setQuestionList] = useState(props.QuestionList);
+  const [tempMinDiff, setTempMinDiff] = useState();
+  const [tempMaxDiff, setTempMaxDiff] = useState(10);
   const [pageNum, setPageNum] = useState(1);
   const [maxPageNum, setMaxPageNum] = useState(0);
+  const [item,setItem] = useState([])
+  // console.log(props.QuestionList.ques);
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
   const QUERYSTR_PREFIX = "q";
-
-  const handleChange2 = (e) => {
-    setMinPrice(e.values[0]);
-    setMaxPrice(e.values[1]);
-  };
+  console.log("Where is question", props.QuestionList);
+  
+  useEffect(()=>{
+    getItemList()
+  },[minDifficulty,maxDifficulty])
+  const getItemList = async() => {
+    const url = `http://localhost:5000/ques?page=${pageNum}`
+    const data = await fetch(url)
+    const response = await data.json()
+    console.log("AlgoList",response.data.ques)
+    setItem(response.data.ques)
+  }
   const handleChange = (e) => {
-    setMinPrice(e.values[0]);
-    setMaxPrice(e.values[1]);
+    setMinDifficulty(e.values[0]);
+    setMaxDifficulty(e.values[1]);
   };
+
   const handleValuesUpdated = (e) => {
-    setTempMinPrice(e.values[0]);
-    setTempMaxPrice(e.values[1]);
+    setTempMinDiff(e.values[0]);
+    setTempMaxDiff(e.values[1]);
   };
   const goNextPage = () => {
     setPageNum(pageNum + 1);
@@ -45,30 +55,42 @@ export default function AlgoList() {
     setPageNum(pageNum - 1);
   };
 
-  //   const handleSearch = (e) => {
-  //       let filteredCards = originalCards;
-  //       if(e){
+  // const handleSearch = (e) => {
+  //     let filteredCards = originalCards;
+  //     if(e){
 
-  //       }
-  //       if(keyword){
+  //     }
+  //     if(keyword){
 
-  //       }
+  //     }
 
-  //   }
-  //   const Experience = ({ title, pictureUrl, country, price, duration, _id }) => (
-  //     <div>
-  //       <Link to={`experience/${_id}`}>
-  //       <RecipeReviewCard
-  //         title={title}
-  //         pictureURL={pictureUrl}
-  //         country={country}
-  //         price={price}
-  //         duration={duration}
-
-  //       />
-  //       </Link>
-  //     </div>
-  //   );
+  // }
+  const Question = ({
+    title,
+    description,
+    source,
+    sponsors,
+    categories,
+    logo,
+    author,
+    difficulties,
+    _id,
+  }) => (
+    <div>
+      <Link to={`question/${_id}`}>
+        <Card2
+          title={title}
+          description={description}
+          source={source}
+          sponsors={sponsors}
+          categories={categories}
+          logo={logo}
+          author={author}
+          difficulties={difficulties}
+        />
+      </Link>
+    </div>
+  );
   return (
     <div>
       <MDBContainer>
@@ -95,19 +117,20 @@ export default function AlgoList() {
             </MDBRow>
           </MDBCol>
           <Rheostat
-            min={1}
-            max={1000}
-            values={[minPrice, maxPrice]}
+            min={0}
+            max={10}
+            values={[minDifficulty, maxDifficulty]}
             onValuesUpdated={handleValuesUpdated}
             onChange={handleChange}
           />
           <p>
-            Min Price {tempMinPrice} <br /> Max Price {tempMaxPrice}
+            Min Diff {tempMinDiff} <br /> Max Diff {tempMaxDiff}
           </p>
-
+          {item.map((e) => (
+            <Question {...e} />
+          ))}
         </div>
-        <Card2 />
-        <PaginationPage />
+        <PaginationPage next={goNextPage} back={goPrevPage}/>
       </MDBContainer>
     </div>
   );

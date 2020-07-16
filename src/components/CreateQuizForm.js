@@ -16,14 +16,29 @@ export default function CreateQuizForm(props) {
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
+            <Form.Label>Categories</Form.Label>
+            <Form.Control placeholder="NodeJS, ReactJS, Algorithm, Data Structure" onChange={(e) => props.setCategories(e)}/>
+          </Form.Group>
+          <Form.Group controlId="formGridAddress1">
             <Form.Label>Source</Form.Label>
             <Form.Control placeholder="NodeJS, ReactJS, Algorithm, Data Structure" onChange={(e) => props.setSource(e)}/>
           </Form.Group>
-
-
-
-
-
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Sponsors</Form.Label>
+            <Form.Control placeholder="CoderSchool,Bootcamp,..." onChange={(e) => props.setSponsors(e)}/>
+          </Form.Group>
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Difficult</Form.Label>
+            <Form.Control placeholder="CoderSchool,Bootcamp,..." onChange={(e) => props.setDifficulties(e)}/>
+          </Form.Group>
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Author</Form.Label>
+            <Form.Control placeholder="CoderSchool,Bootcamp,..." onChange={(e) => props.setSponsors(e)}/>
+          </Form.Group>
+          <Form.Group controlId="formGridAddress1">
+            <Form.Label>Logo</Form.Label>
+            <Form.Control placeholder="CoderSchool,Bootcamp,..." onChange={(e) => props.setLogo(e)}/>
+          </Form.Group>
           <Form.Group id="formGridCheckbox">
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>

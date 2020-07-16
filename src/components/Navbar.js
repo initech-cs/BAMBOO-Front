@@ -91,7 +91,7 @@ class Navbar2 extends React.Component {
                     {this.props.user ? 
                     <MDBDropdownMenu className="dropdown-default">
                       <MDBDropdownItem href="/profile">
-                        Your Profile
+                         Profile
                       </MDBDropdownItem>
                       <MDBDropdownItem onClick={()=>{this.props.logout()}}>Logout</MDBDropdownItem>
                     </MDBDropdownMenu>:null}

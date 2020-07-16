@@ -10,16 +10,19 @@ import AlgoPage from "./pages/AlgoPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import SignupPage from "./pages/SignupPage";
-import CreatePage from "./pages/Create"
-import DeveloperPage from "./pages/DeveloperPage"
+import CreatePage from "./pages/Create";
+import DeveloperPage from "./pages/DeveloperPage";
 function App(props) {
-  let user = { 
-    isAuthenticated: true
-  }
-  
+  let user2 = {
+    isAuthenticated: true,
+  };
+  console.log(" id ", props);
+  // const [user, setUser] = useState(
+  //   props.location.state ? props.location.state.user : null
+  // );
 
   const ProtectedRoute = (props) => {
-    if (user.isAuthenticated === true) {
+    if (user2.isAuthenticated === true) {
       return <Route {...props} />;
     } else {
       return <Redirect to="/login" />;
@@ -27,13 +30,21 @@ function App(props) {
   };
   return (
     <Switch>
-      <Route path="/" exact component={(props) => <MainPage {...props}/>} />
+      <Route path="/" exact component={(props) => <MainPage {...props} />} />
       {/* <Route path="/" exact component={MainPage} /> */}
-      <Route path="/login" exact component={LoginPage} />
+      <Route
+        path="/login"
+        exact
+        component={(props) => <LoginPage {...props} />}
+      />
       {/* this handle event that switch user to Login pages */}
-      <Route path="/question" exact component={AlgoPage} />
+      <Route
+        path="/question"
+        exact
+        component={(props) => <AlgoPage {...props} />}
+      />
       {/* this handle event that switch user to well, .. Jobs page */}
-      <Route path="/dev" exact component={DeveloperPage} />
+      <Route path="/dev" exact component={(props)=><DeveloperPage {...props}/>} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/signup" exact component={SignupPage} />
       {/* this handle event that switch user to well, .. Jobs page */}

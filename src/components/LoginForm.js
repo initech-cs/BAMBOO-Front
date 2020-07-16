@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Link, Redirect } from "react-router-dom";
+import FacebookLogin from 'react-facebook-login';
+import {Modal} from "react-bootstrap"
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -20,16 +22,17 @@ import {
   MDBCardBody,
   MDBInput,
   MDBFormInline,
-  MDBAnimation
+  MDBAnimation,
 } from "mdbreact";
 import "./SignupForm.css";
 
 export default function SignupForm(props) {
-  const [collapseID,setCollapseID] = useState("")
-  const toggleCollapse = collapseID => () =>
-  setCollapseID(prevState => ({
-    collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-  }));
+  const [collapseID, setCollapseID] = useState("");
+  const [openFacebook,setOpenFacebook] = useState(false)
+  const toggleCollapse = (collapseID) => () =>
+    setCollapseID((prevState) => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : "",
+    }));
   const overlay = (
     <div
       id="sidenav-overlay"
@@ -38,37 +41,29 @@ export default function SignupForm(props) {
     />
   );
 
-  const handleSubmit = async e => {
-
-  }
+  const handleSubmit = async (e) => {};
   return (
     <div>
-       <div id="classicformpage">
+      <div id="classicformpage">
         {/* <Router> */}
-          <div>
-            <MDBNavbar dark expand="md" fixed="top">
-              <MDBContainer>
+        <div>
+          <MDBNavbar dark expand="md" fixed="top">
+            <MDBContainer>
               <MDBNavbarBrand>
-              <MDBBtn outline color="success">BambooSoft</MDBBtn>
+                <MDBBtn outline color="success">
+                  BambooSoft
+                </MDBBtn>
               </MDBNavbarBrand>
-                <MDBNavbarToggler
-                  onClick={toggleCollapse("navbarCollapse")}
-                />
-                <MDBCollapse
-                  id="navbarCollapse"
-                  isOpen={collapseID}
-                  navbar
-                >
-                
-                  <MDBNavbarNav right>
-                    <MDBNavItem>
-                    </MDBNavItem>
-                  </MDBNavbarNav>
-                </MDBCollapse>
-              </MDBContainer>
-            </MDBNavbar>
-            {collapseID && overlay}
-          </div>
+              <MDBNavbarToggler onClick={toggleCollapse("navbarCollapse")} />
+              <MDBCollapse id="navbarCollapse" isOpen={collapseID} navbar>
+                <MDBNavbarNav right>
+                  <MDBNavItem></MDBNavItem>
+                </MDBNavbarNav>
+              </MDBCollapse>
+            </MDBContainer>
+          </MDBNavbar>
+          {collapseID && overlay}
+        </div>
         {/* </Router> */}
 
         <MDBView>
@@ -80,9 +75,8 @@ export default function SignupForm(props) {
                   delay=".3s"
                   className="green-text text-center text-md-left col-md-6 mt-xl-5 mb-5"
                 >
-                  <h1 className="h1-responsive font-weight-bold">
-                    Login
-                  </h1>
+                  <h1 className="h1-responsive font-weight-bold">Login</h1>
+
                   <hr className="hr-light" />
                   <h6 className="mb-4">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -103,13 +97,13 @@ export default function SignupForm(props) {
                           <MDBIcon icon="user" /> Login:
                         </h3>
                         <hr className="hr-light" />
-                      
+
                         <MDBInput
                           className="green-text"
                           iconClass="green-text"
                           label="Your email"
                           icon="envelope"
-                          onChange={(e) => (props.setEmail(e))}
+                          onChange={(e) => props.setEmail(e)}
                         />
                         <MDBInput
                           className="green-text"
@@ -117,17 +111,44 @@ export default function SignupForm(props) {
                           label="Your password"
                           icon="lock"
                           type="password"
-                          onChange={(e) => (props.setPassword(e))}
+                          onChange={(e) => props.setPassword(e)}
                         />
                         <div className="text-center mt-4 black-text">
-                          <MDBBtn color="success" onClick={() => props.loginWithEmail(props.email,props.password)}>Login</MDBBtn>
+                          <MDBBtn
+                            color="success"
+                            onClick={() =>
+                              props.loginWithEmail(props.email, props.password)
+                            }
+                          >
+                            Login
+                          </MDBBtn>
                           <hr className="hr-light" />
                           <div className="text-center d-flex justify-content-center white-label">
-                          <MDBBtn color="blue" size="sm"><MDBIcon fab icon="facebook-f" /> Facebook</MDBBtn>
-                              
-                          <MDBBtn color="red" size="sm"><MDBIcon fab icon="google" /> Google</MDBBtn>
+                            <MDBBtn
+                              color="blue"
+                              size="sm"
+                              onClick={() => {
+                               setOpenFacebook(true)
+                              }}
+                            >
+                              <MDBIcon fab icon="facebook-f" /> Facebook
+                            </MDBBtn>
+
+                            <MDBBtn color="red" size="sm">
+                              <MDBIcon fab icon="google" /> Google
+                            </MDBBtn>
                           </div>
                         </div>
+                        <Modal show={openFacebook} onHide={() => setOpenFacebook(!openFacebook)}>
+                          <h1>Login with Email</h1>
+
+                          <FacebookLogin
+                            appId="671839706705875"
+                            autoLoad={true}
+                            fields="name,email,picture"
+                            callback={props.loginWithFacebook}
+                          />
+                        </Modal>
                       </MDBCardBody>
                     </MDBCard>
                   </MDBAnimation>
@@ -154,5 +175,5 @@ export default function SignupForm(props) {
         </MDBContainer>
       </div>
     </div>
-  )
+  );
 }

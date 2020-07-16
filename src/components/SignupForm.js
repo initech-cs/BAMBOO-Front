@@ -26,10 +26,16 @@ import "./SignupForm.css";
 
 export default function SignupForm(props) {
   const [collapseID,setCollapseID] = useState("")
+  const [userValid,setUserValid] = useState(false)
+  const [passwordValid,setPasswordValid] = useState(false)
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const toggleCollapse = collapseID => () =>
   setCollapseID(prevState => ({
     collapseID: prevState.collapseID !== collapseID ? collapseID : ""
   }));
+
   const overlay = (
     <div
       id="sidenav-overlay"
@@ -40,6 +46,24 @@ export default function SignupForm(props) {
   const signup = ()=>{
     
   }
+
+  const handleSubmit = ()=>{
+
+  }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    console.log({ email });
+  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    console.log({ password });
+  };
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    console.log({ password });
+  };
+  const handleUserChange = ()=>{}
   return (
     <div>
        <div id="classicformpage">
@@ -72,6 +96,7 @@ export default function SignupForm(props) {
                             type="text"
                             placeholder="Search"
                             aria-label="Search"
+                            
                           />
                         </div>
                       </MDBFormInline>
@@ -112,7 +137,7 @@ export default function SignupForm(props) {
                   <MDBAnimation type="fadeInRight" delay=".3s">
                     <MDBCard id="classic-card">
                       <MDBCardBody className="white-text">
-                        <h3 className="text-center">
+                        <h3 className="text-center green-text">
                           <MDBIcon icon="user" /> Sign up
                         </h3>
                         <hr className="hr-light" />
@@ -121,14 +146,13 @@ export default function SignupForm(props) {
                           iconClass="white-text"
                           label="Your name"
                           icon="user"
-                          onChange={(e)=>props.setUser(e)}
                         />
                         <MDBInput
                           className="white-text"
                           iconClass="white-text"
                           label="Your email"
                           icon="envelope"
-                          onChange={(e)=>props.setEmail(e)}
+                          onChange={(e)=>handleEmailChange(e)}
                         />
                         <MDBInput
                           className="white-text"
@@ -136,7 +160,7 @@ export default function SignupForm(props) {
                           label="Your password"
                           icon="lock"
                           type="password"
-                          onChange={(e)=>props.setPassword(e)}
+                          onChange={(e)=>handlePasswordChange(e)}
                         />
                         <MDBInput
                           className="white-text"
@@ -144,7 +168,7 @@ export default function SignupForm(props) {
                           label="Re-enter your password"
                           icon="lock"
                           type="password"
-                          onChange={(e)=>props.setConfirm(e)}
+                          onChange={(e)=>handleConfirmPasswordChange(e)}
                         />
                         <div className="text-center mt-4 black-text">
                           <MDBBtn color="indigo" onClick={()=>{props.addUser(props.username,props.email,props.password)}}>Sign Up</MDBBtn>
