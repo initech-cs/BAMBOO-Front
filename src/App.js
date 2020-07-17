@@ -12,6 +12,7 @@ import MainPage from "./pages/MainPage";
 import SignupPage from "./pages/SignupPage";
 import CreatePage from "./pages/Create";
 import DeveloperPage from "./pages/DeveloperPage";
+import ProfilePage from "./pages/ProfilePage"
 function App(props) {
   let user2 = {
     isAuthenticated: true,
@@ -50,8 +51,11 @@ function App(props) {
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/create" exact component={CreatePage} />
       {/* this handle event that switch user to well, .. Jobs page */}
+      <Route path="/profile/me" exact component={ProfilePage} />
+      
+      {/* this handle event that switch user to well, .. Jobs page */}
       <ProtectedRoute
-        path="/Algo/:id"
+        path="/user/:id"
         render={(props) => <AlgoDetail {...props} />}
       />
     </Switch>

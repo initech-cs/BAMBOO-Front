@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBMedia, MDBIcon, MDBContainer } from "mdbreact";
+import { MDBMedia, MDBIcon, MDBContainer,MDBBadge } from "mdbreact";
 import { Row, Col, Badge } from "react-bootstrap";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
@@ -7,7 +7,7 @@ import "./QuestionList.css";
 const MediaObjectPage = (props) => {
   const jobSelect = () => {};
   return (
-    <MDBContainer>
+    <MDBContainer className="bgapp">
       <div className="job-content m-1" onClick={() => jobSelect()}>
         <Row>
           <Col>
@@ -21,12 +21,12 @@ const MediaObjectPage = (props) => {
               <div>
                 {props.description}
                 <div>
-                  <a href={props.source}>Source</a>
                 </div>
               </div>
 
               <div>
-                <ul className="benefit-list">{props.categories}</ul>
+  <ul className="benefit-list">Categories:{props.categories}{props.Categories.map(i=>{return <MDBBadge color="success" className="m-1">{i}</MDBBadge>})}</ul>
+  <ul className="benefit-list">Licensed by:{props.sponsors.map(i=>{return <MDBBadge color="danger" className="m-1">{i}</MDBBadge>})}</ul>
               </div>
             </div>
           </Col>
