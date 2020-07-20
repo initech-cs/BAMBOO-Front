@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Link, Redirect } from "react-router-dom";
 import {
@@ -20,21 +20,22 @@ import {
   MDBCardBody,
   MDBInput,
   MDBFormInline,
-  MDBAnimation
+  MDBAnimation,
 } from "mdbreact";
+import { MDBPopover, MDBPopoverBody, MDBPopoverHeader } from "mdbreact";
 import "./SignupForm.css";
 
 export default function SignupForm(props) {
-  const [collapseID,setCollapseID] = useState("")
-  const [userValid,setUserValid] = useState(false)
-  const [passwordValid,setPasswordValid] = useState(false)
+  const [collapseID, setCollapseID] = useState("");
+  const [userValid, setUserValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const toggleCollapse = collapseID => () =>
-  setCollapseID(prevState => ({
-    collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-  }));
+  const toggleCollapse = (collapseID) => () =>
+    setCollapseID((prevState) => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : "",
+    }));
 
   const overlay = (
     <div
@@ -43,13 +44,8 @@ export default function SignupForm(props) {
       onClick={toggleCollapse("navbarCollapse")}
     />
   );
-  const signup = ()=>{
-    
-  }
+  const signup = () => {};
 
-  const handleSubmit = ()=>{
-
-  }
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -63,50 +59,33 @@ export default function SignupForm(props) {
     setConfirmPassword(e.target.value);
     console.log({ password });
   };
-  const handleUserChange = ()=>{}
+  const handleUserChange = () => {};
   return (
     <div>
-       <div id="classicformpage">
+      <div id="classicformpage">
         {/* <Router> */}
-          <div>
-            <MDBNavbar dark expand="md" fixed="top">
-              <MDBContainer>
-                <MDBNavbarBrand>
-                  <strong className="white-text">MDB</strong>
-                </MDBNavbarBrand>
-                <MDBNavbarToggler
-                  onClick={toggleCollapse("navbarCollapse")}
-                />
-                <MDBCollapse
-                  id="navbarCollapse"
-                  isOpen={collapseID}
-                  navbar
-                >
-                  <MDBNavbarNav left>
-                    <MDBNavItem active>
-                      <MDBNavLink to="/">Home</MDBNavLink>
-                    </MDBNavItem>
-                  </MDBNavbarNav>
-                  <MDBNavbarNav right>
-                    <MDBNavItem>
-                      <MDBFormInline waves>
-                        <div className="md-form my-0">
-                          <input
-                            className="form-control mr-sm-2"
-                            type="text"
-                            placeholder="Search"
-                            aria-label="Search"
-                            
-                          />
-                        </div>
-                      </MDBFormInline>
-                    </MDBNavItem>
-                  </MDBNavbarNav>
-                </MDBCollapse>
-              </MDBContainer>
-            </MDBNavbar>
-            {collapseID && overlay}
-          </div>
+        <div>
+          <MDBNavbar dark expand="md" fixed="top">
+            <MDBContainer>
+              <MDBNavbarBrand>
+                <strong className="white-text">Bamboo</strong>
+              </MDBNavbarBrand>
+              <MDBNavbarToggler onClick={toggleCollapse("navbarCollapse")} />
+              <MDBCollapse id="navbarCollapse" isOpen={collapseID} navbar>
+                <MDBNavbarNav left>
+                  <MDBNavItem active>
+                    <MDBNavLink to="/">Home</MDBNavLink>
+                  </MDBNavItem>
+                </MDBNavbarNav>
+                <MDBNavbarNav right>
+                  <MDBNavItem>
+                  </MDBNavItem>
+                </MDBNavbarNav>
+              </MDBCollapse>
+            </MDBContainer>
+          </MDBNavbar>
+          {collapseID && overlay}
+        </div>
         {/* </Router> */}
 
         <MDBView>
@@ -116,29 +95,17 @@ export default function SignupForm(props) {
                 <MDBAnimation
                   type="fadeInLeft"
                   delay=".3s"
-                  className="white-text text-center text-md-left col-md-6 mt-xl-5 mb-5"
+                  className="white-text text-center text-md-left col-md-3 mt-xl-5 mb-5"
                 >
-                  <h1 className="h1-responsive font-weight-bold">
-                    Sign up right now!
-                  </h1>
-                  <hr className="hr-light" />
-                  <h6 className="mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Rem repellendus quasi fuga nesciunt dolorum nulla magnam
-                    veniam sapiente, fugiat! Commodi sequi non animi ea dolor
-                    molestiae, quisquam iste, maiores. Nulla.
-                  </h6>
-                  <MDBBtn outline color="white">
-                    Learn More
-                  </MDBBtn>
+                  
                 </MDBAnimation>
 
-                <MDBCol md="6" xl="5" className="mb-4">
+                <MDBCol md="6" xl="6" className="mb-6">
                   <MDBAnimation type="fadeInRight" delay=".3s">
                     <MDBCard id="classic-card">
-                      <MDBCardBody className="white-text">
-                        <h3 className="text-center green-text">
-                          <MDBIcon icon="user" /> Sign up
+                      <MDBCardBody className="green-text">
+                        <h3 className="text-center white-text">
+                           Sign up
                         </h3>
                         <hr className="hr-light" />
                         <MDBInput
@@ -146,13 +113,14 @@ export default function SignupForm(props) {
                           iconClass="white-text"
                           label="Your name"
                           icon="user"
+                          onChange={(e) => props.setUser(e)}
                         />
                         <MDBInput
                           className="white-text"
                           iconClass="white-text"
                           label="Your email"
                           icon="envelope"
-                          onChange={(e)=>handleEmailChange(e)}
+                          onChange={(e) => props.setEmail(e)}
                         />
                         <MDBInput
                           className="white-text"
@@ -160,7 +128,7 @@ export default function SignupForm(props) {
                           label="Your password"
                           icon="lock"
                           type="password"
-                          onChange={(e)=>handlePasswordChange(e)}
+                          onChange={(e) => props.setPassword(e)}
                         />
                         <MDBInput
                           className="white-text"
@@ -168,16 +136,30 @@ export default function SignupForm(props) {
                           label="Re-enter your password"
                           icon="lock"
                           type="password"
-                          onChange={(e)=>handleConfirmPasswordChange(e)}
+                          onChange={(e) => props.setConfirm(e)}
                         />
                         <div className="text-center mt-4 black-text">
-                          <MDBBtn color="indigo" onClick={()=>{props.addUser(props.username,props.email,props.password)}}>Sign Up</MDBBtn>
+                          <MDBBtn
+                            color="green"
+                            onClick={() => {
+                              props.handleSubmit();
+                            }}
+                          >
+                            Sign Up
+                          </MDBBtn>
                           <hr className="hr-light" />
                           <div className="text-center d-flex justify-content-center white-label">
-                          <MDBBtn color="blue" size="sm"><MDBIcon fab icon="facebook-f" /> Facebook</MDBBtn>
-                              
-                          <MDBBtn color="red" size="sm"><MDBIcon fab icon="google" /> Google</MDBBtn>
+                          {props.isRegistered ? null:<MDBPopover placement="bottom" popover clickable id="popper3">
+                          <MDBBtn color="danger" >{props.message() || 
+                          "All good!"}</MDBBtn>
+                    <div>
+                      <MDBPopoverHeader></MDBPopoverHeader>
+                      <MDBPopoverBody>
+                      </MDBPopoverBody>
+                    </div>
+                  </MDBPopover>}  
                           </div>
+                          
                         </div>
                       </MDBCardBody>
                     </MDBCard>
@@ -205,5 +187,5 @@ export default function SignupForm(props) {
         </MDBContainer>
       </div>
     </div>
-  )
+  );
 }
