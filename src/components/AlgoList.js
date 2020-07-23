@@ -61,15 +61,17 @@ export default function AlgoList(props) {
   // console.log(props.QuestionList.ques);
   const deleteItem = async (id) => {
     console.log(id);
-    const url = `http://localhost:5000/ques/${id}`;
+    const url = `https://bamboobackend123.herokuapp.com/ques/${id}`;
     const data = await fetch(url, {
       method: "DELETE",
       header: {
         "Content-Type": "application/json",
       },
+      
     });
-
+    
     getItemList();
+    alert("Deleted")
     console.log(data);
     // const response = await data.json();
 
@@ -340,9 +342,10 @@ export default function AlgoList(props) {
           disabled={pageNum === maxPageNum}
           handleClick={goNextPage}
         >
-          Next Page
+          Next Page 
         </PaginationLink>
       </MDBRow>
     </div>
+    //sfdsfdsf
   );
 }
